@@ -9,16 +9,17 @@
 #include <../../../../../../../Source/Runtime/Engine/Classes/Kismet/GameplayStatics.h>
 #include <../../../../../../../Source/Runtime/Engine/Classes/GameFramework/PlayerController.h>
 #include <../../../../../../../Source/Runtime/Engine/Classes/GameFramework/PlayerState.h>
+
 void UDBGameInstance::Init()
 {
 	Super::Init();
 
 
-	// ¿Â¶óÀÎ ¼­ºê ½Ã½ºÅÛ °¡Á®¿ÀÀÚ
+	// ï¿½Â¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	IOnlineSubsystem* subsys = IOnlineSubsystem::Get();
 	if (subsys)
 	{
-		// ¼¼¼Ç ÀÎÅÍÆäÀÌ½º °¡Á®¿ÀÀÚ
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		sessionInterface = subsys->GetSessionInterface();
 		sessionInterface->OnCreateSessionCompleteDelegates.AddUObject(this, &UDBGameInstance::OnCreateSessionComplete);
 		sessionInterface->OnFindSessionsCompleteDelegates.AddUObject(this, &UDBGameInstance::OnFindSessionComplete);
@@ -36,25 +37,25 @@ void UDBGameInstance::CreateMySession(int32 PlayerCount, float _CountdownTime)
 {
 	FOnlineSessionSettings sessionSettings;
 
-	// true ¼¼¼ÇÀÌ °Ë»ö µÈ´Ù.
+	// true ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ ï¿½È´ï¿½.
 	sessionSettings.bShouldAdvertise = true;
 
-	// steam »ç¿ëÇÏ¸é ÇØ´ç ¿É¼ÇÀÌ true ¼¼¼ÇÀ» ¸¸µé ¼ö ÀÖ´Ù.
+	// steam ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½Ø´ï¿½ ï¿½É¼ï¿½ï¿½ï¿½ true ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½.
 	sessionSettings.bUseLobbiesIfAvailable = true;
 
-	// ³»°¡ °ÔÀÓÁßÀÎ ¾Æ´ÑÁö¸¦ º¸¿©ÁÙ°ÇÁö
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ù°ï¿½ï¿½ï¿½
 	sessionSettings.bUsesPresence = true;
-	// °ÔÀÓ ÇÃ·¹ÀÌ Áß¿¡ Âü¿©ÇÒ ¼ö ÀÖ°Ô
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö°ï¿½
 	sessionSettings.bAllowJoinInProgress = true;
 	sessionSettings.bAllowJoinViaPresence = true;
 
-	// ÀÎ¿ø ¼ö 
+	// ï¿½Î¿ï¿½ ï¿½ï¿½ 
 	sessionSettings.NumPublicConnections = PlayerCount;
 
 	sessionSettings.Set(FName("ROOM_NAME"), roomName, EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
 
 
-	// ¼¼¼Ç »ý¼º ¿äÃ»
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»
 	FUniqueNetIdPtr netID = GetWorld()->GetFirstLocalPlayerFromController()->GetUniqueNetIdForPlatformUser().GetUniqueNetId();
 
 	int32 rand = FMath::RandRange(1, 100000);
@@ -71,7 +72,7 @@ void UDBGameInstance::OnCreateSessionComplete(FName SessionName, bool bWasSucces
 		OnCreateComplete.ExecuteIfBound(true);
 
 		UE_LOG(LogTemp, Warning, TEXT("OnCreateSessionComplete Success -- %s"), *SessionName.ToString());
-		// Battle Map À¸·Î ÀÌµ¿ÇÏÀÚ
+		// Battle Map ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½
 		FString Option = FString::Printf(TEXT("/Game/DBMaps/LobbyMap?listen?MaxPlayers=%d?CountdownTime=%f"), maxPlayer, CountdownTime);
 		GetWorld()->ServerTravel(Option);
 	}
@@ -103,14 +104,14 @@ void UDBGameInstance::FindOtherSession()
 {
 	sessionSearch = MakeShared<FOnlineSessionSearch>();
 
-	sessionSearch->QuerySettings.Set(SEARCH_PRESENCE, true, EOnlineComparisonOp::Equals);
+	sessionSearch->QuerySettings.Set(SEARCH_LOBBIES, true, EOnlineComparisonOp::Equals);
 
 	sessionSearch->MaxSearchResults = 10;
 
 	auto PC = UGameplayStatics::GetPlayerController(GetWorld(), 0);
 	UE_LOG(LogTemp, Warning, TEXT("NetId:%s"), *PC->PlayerState->GetUniqueId().ToString());
 
-	// ¼¼¼Ç °Ë»ö ¿äÃ»
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ ï¿½ï¿½Ã»
 	sessionInterface->FindSessions(0, sessionSearch.ToSharedRef());
 	UE_LOG(LogTemp, Warning, TEXT("Searching session"));
 }
@@ -129,7 +130,7 @@ void UDBGameInstance::OnFindSessionComplete(bool bWasSuccessful)
 			FOnlineSessionSearchResult si = results[i];
 			si.Session.SessionSettings.Get(FName("ROOM_NAME"), roomName);
 
-			// ¼¼¼Ç Á¤º¸ ---> String À¸·Î 
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ---> String ï¿½ï¿½ï¿½ï¿½ 
 			int32 max = si.Session.SessionSettings.NumPublicConnections;
 
 			int32 currPlayer = max - si.Session.NumOpenPublicConnections;
@@ -182,13 +183,13 @@ void UDBGameInstance::OnJoinSessionComplete(FName SessionName, EOnJoinSessionCom
 
 		UE_LOG(LogTemp, Warning, TEXT("OnJoinSessionComplete Success : %s"), *SessionName.ToString());
 		FString url;
-		// Âü¿©ÇØ¾ß ÇÏ´Â Listen ¼­¹ö URLÀ» ¹Þ¾Æ ¿ÀÀÚ
+		// ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½Ï´ï¿½ Listen ï¿½ï¿½ï¿½ï¿½ URLï¿½ï¿½ ï¿½Þ¾ï¿½ ï¿½ï¿½ï¿½ï¿½
 		sessionInterface->GetResolvedConnectString(SessionName, url);
 		UE_LOG(LogTemp, Warning, TEXT("Join session URL : %s"), *url);
 
 		if (!url.IsEmpty())
 		{
-			// ÇØ´ç URL ·Î Á¢¼ÓÇÏÀÚ
+			// ï¿½Ø´ï¿½ URL ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			APlayerController* pc = GetWorld()->GetFirstPlayerController();
 			pc->ClientTravel(url, ETravelType::TRAVEL_Absolute);
 		}

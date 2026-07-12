@@ -33,7 +33,7 @@ void UDBEquipmentComponent::BeginPlay()
 		{
 			ESlotType slotNum = ESlotType::NONE;
 			int32 size = (int32)slotNum - 1;
-			InventoryItems.Items.SetNum(size, false);
+			InventoryItems.Items.SetNum(size, EAllowShrinking::No);
 
 			int val = 10;
 		}

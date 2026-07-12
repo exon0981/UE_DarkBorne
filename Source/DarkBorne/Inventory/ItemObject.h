@@ -88,7 +88,7 @@ public:
 	FDarkBorneStats GetEnchantments() const;
 	
 	UFUNCTION(BlueprintCallable)
-	FIntPoint GetDimensions() const;  // Ã¶ÀÚ ¼öÁ¤
+	FIntPoint GetDimensions() const;  // Ã¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	UFUNCTION(BlueprintCallable)
 	UMaterialInterface* GetIcon() const;
 	UFUNCTION(BlueprintCallable)

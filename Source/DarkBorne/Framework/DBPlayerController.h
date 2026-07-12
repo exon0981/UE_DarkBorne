@@ -32,7 +32,7 @@ protected:
 	TObjectPtr<UGameEndWidget> GameEndWidget;
 
 public:
-	// °üÀüÀÚ ¸ðµå µÇ±â
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ç±ï¿½
 	void ChangeToSpectator();
 	UFUNCTION(Server, Reliable)
 	void ServerRPC_ChangeToSpectator();

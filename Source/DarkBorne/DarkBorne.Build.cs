@@ -8,7 +8,7 @@ public class DarkBorne : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "Niagara","UMG", "AIModule", "NavigationSystem", "OnlineSubsystem", "OnlineSubsystemSteam" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "Niagara","UMG", "AIModule", "NavigationSystem", "OnlineSubsystem", "OnlineSubsystemSteam", "CoreOnline" });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 

@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "DarkBorne/Status/CharacterStatusComponent.h"
 #include "DarkBorne/Zone/FalloffCollisonActor.h"
+#include "DarkBorne/Status/CharacterStatusComponent.h"
 #include "Net/UnrealNetwork.h"
 #include "Components/BoxComponent.h"
 #include "DarkBorne/DBCharacters/DBRogueCharacter.h"
@@ -46,14 +46,14 @@ void AFalloffCollisonActor::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, 
 	//UE_LOG(LogTemp, Warning, TEXT("Testing here: %s"), *GetNameSafe(GetOwner()));
 	//UDBRogueAnimInstance* OtherPlayerAnim = Cast<UDBRogueAnimInstance>(OtherPlayer->GetMesh()->GetAnimInstance());
 
-	// Ä³¸¯ÅÍÀÇ GetOnwer·Î ÀÎ½ºÅÏ½º¸¦ °¡Á®¿Í ³ªÀÇ ÇÃ·¹ÀÌ¾î ¾Ö´Ô ÀÎ½ºÅÏ½º·Î °¡Á®¿Â´Ù
+	// Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ GetOnwerï¿½ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ö´ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½
 	ServerRPC_OnOverlapBegin(OtherActor);
 	
 }
 
 void AFalloffCollisonActor::ServerRPC_OnOverlapBegin_Implementation(AActor* OtherActor)
 {
-	//³»°¡ ¾Æ´Ñ ´Ù¸¥ ·Î±× ÇÃ·¹ÀÌ¾î¸¦ otherActor·Î Ä³½ºÆÃ
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½Ù¸ï¿½ ï¿½Î±ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î¸¦ otherActorï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½
 	ADBRogueCharacter* OtherPlayer = Cast<ADBRogueCharacter>(OtherActor);
 	if (OtherPlayer)
 	{
@@ -63,11 +63,11 @@ void AFalloffCollisonActor::ServerRPC_OnOverlapBegin_Implementation(AActor* Othe
 		if (Level != TEXT("ThirdPersonMap"))
 		{
 			UCharacterStatusComponent* StatusComponent = OtherActor->GetComponentByClass<UCharacterStatusComponent>();
-			//³»°¡ ¾Æ´Ñ ´Ù¸¥ ·Î±× ÇÃ·¹ÀÌ¾î¸¦ otherActor·Î Ä³½ºÆÃ
-			//·Îºñ Ã¼Å©
+			//ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½Ù¸ï¿½ ï¿½Î±ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î¸¦ otherActorï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½
+			//ï¿½Îºï¿½ Ã¼Å©
 			StatusComponent->DamageProcess(FallOffDamage, GetOwner());
-			//ÇÃ·¹ÀÌ¾îÀÇ ÇöÀç Ã¼·Â¿¡¼­ ¹«±âµ¥¹ÌÁö¸¸Å­ µ¥¹ÌÁö¸¦ ÁØ´Ù
-			//onRep ÇÔ¼ö´Â Å¬¶ó¿¡¼­¸¸ È£ÃâµÇ¾î¼­ ¼­¹ö¿¡¼­µµ ÇÑ¹ø È£ÃâÇØÁà¾ßÇÑ´Ù
+			//ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½Â¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½âµ¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½
+			//onRep ï¿½Ô¼ï¿½ï¿½ï¿½ Å¬ï¿½ó¿¡¼ï¿½ï¿½ï¿½ È£ï¿½ï¿½Ç¾î¼­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¹ï¿½ È£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
 			//StatusComponent->OnRep_CurrHP();
 
 			//UE_LOG(LogTemp, Warning, TEXT("%s : %.f"),

@@ -17,9 +17,9 @@
 
 ADBPlayerController::ADBPlayerController()
 {
-	// ±âº» ¸¶¿ì½º Ä¿¼­ º¯°æ
+	// ï¿½âº» ï¿½ï¿½ï¿½ì½º Ä¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	DefaultMouseCursor = EMouseCursor::Default;
-	// ÇöÀç ¸¶¿ì½º Ä¿¼­ º¯°æ
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º Ä¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	CurrentMouseCursor = EMouseCursor::Default;
 }
 
@@ -80,16 +80,16 @@ void ADBPlayerController::ServerRPC_ChangeToSpectator_Implementation()
 	APawn* player = GetPawn();
 	if (player)
 	{
-		// ÇÃ·¹ÀÌ °ÔÀÓ ¸ðµåÀÇ °ÔÀÓ¸ðµå¸¦ °¡Á®¿À±â
+		// ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ó¸ï¿½å¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		ATP_ThirdPersonGameMode* gm = Cast<ATP_ThirdPersonGameMode>(GetWorld()->GetAuthGameMode());
 
-		// °üÀüÀÚ Pawn »ý¼º
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Pawn ï¿½ï¿½ï¿½ï¿½
 		ASpectatorPawn* spectator = GetWorld()->SpawnActor<ASpectatorPawn>(gm->SpectatorClass, player->GetActorTransform());
 
-		// ÇöÀç ÇÃ·¹ÀÌ¾î Possess ÇØÁ¦
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ Possess ï¿½ï¿½ï¿½ï¿½
 		UnPossess();
 
-		// °üÀüÀÚ Pawn À» Possess
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Pawn ï¿½ï¿½ Possess
 		Possess(spectator);
 		//UKismetSystemLibrary::K2_SetTimer(this, TEXT("ChangeToSpectator"), 5, false);
 	}

@@ -314,7 +314,7 @@ void UDBInteractionComponent::UpdateOverlappingActor(bool bDebugDraw)
 		FVector End = Start + GetOwner()->GetActorForwardVector() * InteractDistance;
 
 		FVector WorldLoc;
-		FVector WorldDir;
+		FVector WorldDir = FVector::Zero();
 
 		auto PC = Character->GetController<APlayerController>();
 		if (PC)

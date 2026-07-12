@@ -188,7 +188,7 @@ void ADBDropItemManager::AssignEnchantment(FItem& Item)
 	while (counter < EnchantmentNum - 1)
 	{
 		int DataTableIndex = FMath::RandRange(0, Enchantments.Num() - 1);
-		FName SlotTypeName = FName(UEnum::GetValueAsString<ESlotType>(Item.GetSlotType()));
+		FName SlotTypeName = FName(UEnum::GetValueAsString(Item.GetSlotType()));
 
 		UDataTable* Enchantment = Enchantments[DataTableIndex];
 

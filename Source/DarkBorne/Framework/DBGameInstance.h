@@ -20,19 +20,19 @@ class DARKBORNE_API UDBGameInstance : public UGameInstance
 {
 	GENERATED_BODY()
 public:
-	// ÀÌ º¯¼öÅëÇØ (¼¼¼Ç ¸¸µé°í, ¼¼¼Ç °Ë»ö, ¼¼¼Ç Âü¿©)
+	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 	TSharedPtr<class IOnlineSession, ESPMode::ThreadSafe> sessionInterface;
 
-	// ¼¼¼Ç °Ë»öÀÌ ¿Ï·áµÇ¸é È£ÃâÇØ¾ß ÇÏ´Â Delegate
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½Ç¸ï¿½ È£ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½Ï´ï¿½ Delegate
 	FFindCompleteDelegate OnFindComplete;
 	FJoinSessionEventDelegate OnJoinSessionEvent;
 	FCreateCompleteDelegate OnCreateComplete;
 
-	// ¼¼¼Ç ¸¸µå´Â ÇÔ¼ö
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
 	UFUNCTION(BlueprintCallable)
 	void CreateMySession(int32 PlayerCount, float CountdownTime);
 			
-	// ¼¼¼ÇÀ» °Ë»ö ÇÔ¼ö
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ ï¿½Ô¼ï¿½
 	UFUNCTION(BlueprintCallable)
 	void FindOtherSession();
 
@@ -46,7 +46,7 @@ protected:
 
 	void OnFindSessionComplete(bool bWasSuccessful);
 
-	// ¼¼¼Ç Âü¿© ÇÔ¼ö
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
 	UFUNCTION(BlueprintCallable)
 	void JoinOtherSession(int32 idx);
 	void OnJoinSessionComplete(FName SessionName, EOnJoinSessionCompleteResult::Type result);
@@ -54,10 +54,10 @@ protected:
 	virtual void Shutdown() override;
 protected:
 
-	// ¼¼¼Ç °Ë»ö¿¡ ¾²ÀÌ´Â Å¬·¡½º
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 	TSharedPtr<class FOnlineSessionSearch> sessionSearch;
 
-	// ¼¼¼Ç ÀÌ¸§
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
 	FString mySessionName = TEXT("SessionFind");
 
 	FString roomName;
